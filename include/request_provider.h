@@ -21,8 +21,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include <cstddef>
-#include <vector>
-#include <array>
+#include <memory>
 #include <ngen/renderer/draw_request.h>
 
 #include "material_request.h"

@@ -17,6 +17,8 @@
 #include <cassert>
 #include <memory>
 
+#include "make_unique.h"
+
 #include "request_provider.h"
 #include "material_request.h"
 
@@ -47,8 +49,8 @@ namespace ngen {
             if (materialRequests > 0 && pages > 0) {
                 if (0 == m_materialCapacity && 0 == m_pageCapacity) {
                     if (0 == m_materialsAllocated && 0 == m_pagesAllocated) {
-                        m_requestList = std::make_unique<MaterialRequest[]>(materialRequests);
-                        m_pageList = std::make_unique<RequestPage[]>(pages);
+                        m_requestList = unique_helper::make_unique<MaterialRequest[]>(materialRequests);
+                        m_pageList = unique_helper::make_unique<RequestPage[]>(pages);
 
                         m_materialCapacity = materialRequests;
                         m_pageCapacity = pages;

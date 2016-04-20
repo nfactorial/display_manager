@@ -38,6 +38,7 @@ set(SOURCE_FILES
         source/display_provider.cpp)
 
 set(INCLUDE_FILES
+        include/make_unique.h
         include/display_port.h
         include/display_pipeline.h
         include/material_request.h

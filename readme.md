@@ -1,3 +1,12 @@
+## Build status
+
+| [Linux][lin-link] |
+| :---------------: |
+| ![lin-badge]      |
+
+[lin-badge]: https://travis-ci.org/nfactorial/display_manager.svg?branch=master "Travis build status"
+[lin-link]:  https://travis-ci.org/nfactorial/display_manager "Travis build status"
+
 Display Manager
 ===============
 This library provides the core wrapper around the rendering system. The display manager

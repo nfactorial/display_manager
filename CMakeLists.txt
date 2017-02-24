@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.1)   # Travis uses 2.8.7
-# cmake_minimum_required(VERSION 2.8.7)   # Travis uses 2.8.7
+cmake_minimum_required(VERSION 3.1)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS ON)

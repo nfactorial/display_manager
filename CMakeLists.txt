@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 2.8.7)   # Travis uses 2.8.7
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_OSX_ARCHITECTURES x86_64)

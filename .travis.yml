@@ -8,6 +8,7 @@ before_install:
   - sudo apt-get -qq update
 
 install:
+  - sudo apt-get install cmake-data
   - sudo apt-get install cmake
 
 before_script:

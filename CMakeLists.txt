@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 2.7)
+cmake_minimum_required(VERSION 3.6)
 
-set(CMAKE_LEGACY_CYGWIN_WIN32 0) # Remove when CMake >= 2.8.4 is required
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_OSX_ARCHITECTURES x86_64)
 
 add_subdirectory(external)
@@ -8,9 +8,6 @@ add_subdirectory(external)
 option(NGEN_BUILD_TESTS "Build unit tests." ON)
 
 project(NGEN_DISPLAY_MANAGER)
-
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
 include_directories(include)
 include_directories(SYSTEM external/sce_vectormath/include/vectormath/SSE/cpp)

@@ -64,19 +64,19 @@ namespace ngen {
         //!         The DrawRequest instance to be added to this layer.
         //! \return <em>True</em> if the request was added successfully otherwise <em>false</em>.
         bool RenderLayer::addRequest(const DrawRequest &drawRequest) {
-            assert(nullptr != drawRequest.material);
+            if (drawRequest.material) {
+                MaterialRequest *request = findRequest(drawRequest.material);
+                if (nullptr == request) {
+                    // TODO: Allocate request
+                    return false;
+                }
 
-            MaterialRequest *request = findRequest(drawRequest.material);
-            if (nullptr == request) {
-                // TODO: Allocate request
-                return false;
+/*              if ( request->add( drawRequest ) ) {
+                    m_requestCount++;
+                    return true;
+                }*/
             }
 
-/*        if ( request->add( drawRequest ) ) {
-            m_requestCount++;
-            return true;
-        }
-*/
             return false;
         }
 

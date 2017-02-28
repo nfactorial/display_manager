@@ -102,7 +102,7 @@ namespace ngen {
         //!         Miscellaneous variables associated with the view being rendered.
         void RenderLayer::execute(const RenderArgs &renderArgs) {
             for (MaterialRequest *materialRequest = m_requestList;
-                 nullptr != materialRequest; materialRequest = materialRequest->next()) {
+                nullptr != materialRequest; materialRequest = materialRequest->next()) {
                 materialRequest->execute(renderArgs);
             }
         }

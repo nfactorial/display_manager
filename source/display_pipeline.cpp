@@ -16,8 +16,6 @@
 
 #include <ngen/renderer/render_args.h>
 
-#include "make_unique.h"
-
 #include "display_pipeline.h"
 #include "render_layer.h"
 
@@ -46,7 +44,8 @@ namespace ngen {
                 assert(1 == layerCount);      // We currently only support a single layer, this will be improved
                 // once rendering is actually working.
 
-                m_layerList = unique_helper::make_unique<RenderLayer[]>(layerCount);  // TODO: Use allocator
+                m_layerList = std::make_unique<RenderLayer[]>(layerCount);
+                //m_layerList = unique_helper::make_unique<RenderLayer[]>(layerCount);  // TODO: Use allocator
                 for (size_t loop = 0; loop < layerCount; ++loop) {
                     if (!m_layerList[loop].initialize(requestProvider)) {
                         m_layerList.reset();

@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#include <memory>
+
 #include <ngen/renderer/render_args.h>
 
 #include "display_pipeline.h"

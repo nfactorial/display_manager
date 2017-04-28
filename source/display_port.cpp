@@ -25,7 +25,7 @@ namespace ngen {
         : m_requestProvider(nullptr)
         , m_isEnabled(true)
         {
-            m_cameraArgs.type = ngen::renderer::kCamera_Invalid;
+            m_cameraArgs.type = ngen::renderer::kCameraType::Invalid;
             m_cameraArgs.fov = 45.0f;
             m_cameraArgs.zNear = 0.1;
             m_cameraArgs.zFar = 200.0f;
@@ -77,7 +77,7 @@ namespace ngen {
 
         //! \brief  Called by the framework when it is time for our display port to perform its rendering.
         void DisplayPort::onRender() {
-            if (m_isEnabled && ngen::renderer::kCamera_Invalid != m_cameraArgs.type) {
+            if (m_isEnabled && kCameraType::Invalid != m_cameraArgs.type) {
                 prepareRenderArgs(m_cameraArgs, 1.0f);    // TODO: Supply appropriate aspect ratio
 
                 m_pipeline.execute(m_renderArgs);
@@ -96,15 +96,15 @@ namespace ngen {
             m_renderArgs.viewTransform = Vectormath::Aos::inverse(m_renderArgs.invViewTransform);
 
             switch (cameraArgs.type) {
-                case kCamera_Perspective:
+                case kCameraType::Perspective:
                     m_renderArgs.projection.perspective(cameraArgs.fov, aspectRatio, cameraArgs.zNear, cameraArgs.zFar);
                     break;
 
-                case kCamera_Orthographic:
+                case kCameraType::Orthographic:
                     // TODO:
                     break;
 
-                case kCamera_Invalid:
+                case kCameraType::Invalid:
                     break;
             }
 

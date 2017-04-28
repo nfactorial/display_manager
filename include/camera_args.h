@@ -29,7 +29,7 @@
 namespace ngen {
     namespace renderer {
         struct CameraArgs {
-            kCamera_Type type;
+            kCameraType type;
             float fov;                  // Field of view (for perspective cameras)
             float zNear;
             float zFar;

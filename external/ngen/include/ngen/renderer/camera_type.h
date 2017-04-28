@@ -23,10 +23,10 @@
 namespace ngen {
     namespace renderer {
         //! \brief  Defines the types of camera supported by the rendering engine.
-        enum kCamera_Type {
-            kCamera_Invalid,
-            kCamera_Orthographic,
-            kCamera_Perspective,
+        enum class kCameraType {
+            Invalid,
+            Orthographic,
+            Perspective,
         };
     }
 }

@@ -14,10 +14,9 @@
 // limitations under the License.
 //
 
-#include <memory>
-
 #include <ngen/renderer/render_args.h>
 
+#include "make_unique.h"
 #include "display_pipeline.h"
 #include "render_layer.h"
 

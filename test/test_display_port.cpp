@@ -25,7 +25,7 @@ TEST( DisplayPort, Construction ) {
     displayPort.getCameraArgs(cameraArgs);
 
     EXPECT_TRUE(displayPort.isEnabled());
-    EXPECT_EQ(ngen::renderer::kCamera_Invalid, cameraArgs.type);
+    EXPECT_EQ(ngen::renderer::kCameraType::Invalid, cameraArgs.type);
     EXPECT_EQ(45.0, cameraArgs.fov);
 }
 

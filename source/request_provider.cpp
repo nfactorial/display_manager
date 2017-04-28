@@ -15,8 +15,8 @@
 //
 
 #include <cassert>
-#include <memory>
 
+#include "make_unique.h"
 #include "request_provider.h"
 #include "material_request.h"
 

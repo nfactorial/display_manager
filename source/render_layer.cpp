@@ -64,11 +64,17 @@ namespace ngen {
         //!         The DrawRequest instance to be added to this layer.
         //! \return <em>True</em> if the request was added successfully otherwise <em>false</em>.
         bool RenderLayer::addRequest(const DrawRequest &drawRequest) {
-            if (drawRequest.material) {
+            if (m_requestProvider && drawRequest.material) {
                 MaterialRequest *request = findRequest(drawRequest.material);
                 if (nullptr == request) {
                     // TODO: Allocate request
-                    return false;
+                    request = m_requestProvider->allocateMaterialRequest(drawRequest.material);
+                    if (!request) {
+                        return false;
+                    }
+
+                    request->link(m_requestList);
+                    m_requestList = request;
                 }
 
 /*              if ( request->add( drawRequest ) ) {
@@ -87,6 +93,7 @@ namespace ngen {
         //! \return Pointer to the MaterialRequest associated with the specified material, if one could not be found returns <em>nullptr</em>.
         MaterialRequest* RenderLayer::findRequest(IMaterial *material) const {
             // TODO: Might need to use a map in the future rather than a linear search, depends how big the list gets
+            // TODO: Map *should* be faster as the materials requests are not linear in memory, but should perf test
             for (MaterialRequest *request = m_requestList; nullptr != request; request = request->next()) {
                 if (request->getMaterial() == material) {
                     return request;
@@ -101,8 +108,8 @@ namespace ngen {
         //! \param  renderArgs [in] -
         //!         Miscellaneous variables associated with the view being rendered.
         void RenderLayer::execute(const RenderArgs &renderArgs) {
-            for (MaterialRequest *materialRequest = m_requestList;
-                nullptr != materialRequest; materialRequest = materialRequest->next()) {
+            for (MaterialRequest *materialRequest = m_requestList; nullptr != materialRequest;
+                 materialRequest = materialRequest->next()) {
                 materialRequest->execute(renderArgs);
             }
         }

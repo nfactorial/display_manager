@@ -20,7 +20,9 @@
 
 ////////////////////////////////////////////////////////////////////////////
 
+#include <cstdint>
 #include <vectormath_aos.h>
+#include "primitive_type.h"
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -30,6 +32,13 @@ namespace ngen {
         class Geometry;
 
         struct IMaterial;
+
+        struct PrimitiveRequest {
+            kPrimitiveType type;
+            uint32_t count;         // Number of primitives to render
+            uint32_t start;         // Start offset within vertex buffer
+            uint32_t baseIndex;
+        };
 
         struct GeometryRequest {
             Geometry *geometry;

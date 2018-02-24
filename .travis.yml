@@ -20,4 +20,4 @@ script:
   - cmake --version
   - make
   - cd test
-  - ./ngen_displaytests
+  - ./display_manager_test

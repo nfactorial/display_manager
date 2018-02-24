@@ -9,12 +9,7 @@ add_subdirectory(external)
 
 option(NGEN_BUILD_TESTS "Build unit tests." ON)
 
-project(NGEN_DISPLAY_MANAGER)
-
-include_directories(include)
-include_directories(SYSTEM external/sce_vectormath/include/vectormath/SSE/cpp)
-include_directories(SYSTEM external/ngen/include)
-include_directories(SYSTEM external/boost_1_60_0)
+project(display_manager)
 
 # Enable correct rendering API
 if (NGEN_BUILD_OPENGL)
@@ -27,8 +22,10 @@ if (NGEN_BUILD_OPENGL)
         MESSAGE( "Unable to find OpenGL library, please make sure it is installed." )
     endif (OPENGL_FOUND)
 
-    include_directories(${ngenOpenGL_SOURCE_DIR}/include)
+    #include_directories(${ngenOpenGL_SOURCE_DIR}/include)
 endif()
+
+include_directories(SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/external/ngen/include)
 
 set(SOURCE_FILES
         source/display_port.cpp
@@ -48,7 +45,22 @@ set(INCLUDE_FILES
         include/camera_args.h
         include/display_provider.h)
 
-add_library(ngen_display ${SOURCE_FILES} ${INCLUDE_FILES})
+add_library(display_manager STATIC
+    ${SOURCE_FILES}
+    ${INCLUDE_FILES}
+)
+
+target_include_directories(display_manager PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${OPENGL_INCLUDE_DIR}>
+    $<INSTALL_INTERFACE:include/ngen/display_manager>
+)
+
+target_include_directories(display_manager SYSTEM PUBLIC
+    $<BUILD_INTERFACE:${OPENGL_INCLUDE_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/external/sce_vectormath/include/vectormath/SSE/cpp>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/external/ngen/include>
+)
 
 if (NGEN_BUILD_TESTS)
     add_subdirectory(test)
